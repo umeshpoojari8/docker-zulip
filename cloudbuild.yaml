@@ -15,6 +15,9 @@ steps:
       - create
       - -f
       - ./kubernetes/
-
+substitutions:
+  _GKE_CLUSTER: 'ggai'
+  _GKE_ZONE: 'us-central1'
+  
 timeout: "600s" # Optional: Set a timeout for the build
 logsBucket: gs://ggai-zulip
