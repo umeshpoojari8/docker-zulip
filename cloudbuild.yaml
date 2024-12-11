@@ -17,3 +17,4 @@ steps:
       - ./kubernetes/
 
 timeout: "600s" # Optional: Set a timeout for the build
+logsBucket: gs://ggai-zulip
