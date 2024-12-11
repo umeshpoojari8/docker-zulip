@@ -1,0 +1,19 @@
+steps:
+  # Authenticate kubectl with the Kubernetes cluster
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - 'container'
+      - 'clusters'
+      - 'get-credentials'
+      - '${_GKE_CLUSTER}'
+      - '--zone=${_GKE_ZONE}'
+      - '--project=$PROJECT_ID'
+
+  # Apply Kubernetes manifests
+  - name: gcr.io/cloud-builders/kubectl
+    args:
+      - create
+      - -f
+      - ./kubernetes/
+
+timeout: "600s" # Optional: Set a timeout for the build
