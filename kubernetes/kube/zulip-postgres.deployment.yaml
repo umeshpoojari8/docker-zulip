@@ -39,7 +39,7 @@ spec:
         - name: POSTGRES_USER
           value: zulip
         - name: POSTGRES_PASSWORD
-          value: "${ZULIP_POSTGRES_PASSWORD}"
+          value: "password"
         volumeMounts:
           - name: data
             mountPath: /var/lib/postgresql
