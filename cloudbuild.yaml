@@ -29,8 +29,8 @@ steps:
       - 'nodes'
 
 substitutions:
-  _GKE_CLUSTER: 'gogateway'
-  _GKE_ZONE: 'us-central1'
+  _GKE_CLUSTER: 'ggai-dev'
+  _GKE_ZONE: 'us-central1-c'
 
 logsBucket: gs://ggai-dev
 
