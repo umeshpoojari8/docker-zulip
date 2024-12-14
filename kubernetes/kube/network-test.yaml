@@ -1,34 +1,34 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: network-dns-test
-  labels:
-    app: network-dns-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: network-dns-test
-  template:
-    metadata:
-      labels:
-        app: network-dns-test
-    spec:
-      containers:
-      - name: network-test
-        image: tutum/dnsutils  # Image with nslookup and other network utilities
-        command:
-          - "sh"
-          - "-c"
-          - |
-            while true; do
-              echo "Testing network and DNS connectivity..."
-              # Test DNS resolution using nslookup
-              nslookup google.com
-              nslookup my-service.default.svc.cluster.local  # Replace with your internal service
-              # Ping external network for connectivity
-              ping -c 4 google.com
-              # Ping Kubernetes service for internal connectivity
-              ping -c 4 my-service.default.svc.cluster.local  # Replace with your internal service
-              sleep 15
-            done
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: network-dns-test
+#   labels:
+#     app: network-dns-test
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: network-dns-test
+#   template:
+#     metadata:
+#       labels:
+#         app: network-dns-test
+#     spec:
+#       containers:
+#       - name: network-test
+#         image: tutum/dnsutils  # Image with nslookup and other network utilities
+#         command:
+#           - "sh"
+#           - "-c"
+#           - |
+#             while true; do
+#               echo "Testing network and DNS connectivity..."
+#               # Test DNS resolution using nslookup
+#               nslookup google.com
+#               nslookup my-service.default.svc.cluster.local  # Replace with your internal service
+#               # Ping external network for connectivity
+#               ping -c 4 google.com
+#               # Ping Kubernetes service for internal connectivity
+#               ping -c 4 my-service.default.svc.cluster.local  # Replace with your internal service
+#               sleep 15
+#             done
