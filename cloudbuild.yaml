@@ -30,7 +30,7 @@ steps:
 
 substitutions:
   _GKE_CLUSTER: 'ggai-dev'
-  _GKE_ZONE: 'us-central1-c'
+  _GKE_ZONE: 'us-central1'
 
 logsBucket: gs://ggai-dev
 
