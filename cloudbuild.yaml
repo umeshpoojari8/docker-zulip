@@ -32,7 +32,7 @@ substitutions:
   _GKE_CLUSTER: 'gogateway'
   _GKE_ZONE: 'us-central1'
 
-logsBucket: gs://logggai
+logsBucket: gs://ggai-dev
 
 # Ensure the Cloud Build service account has appropriate roles:
 # - roles/container.developer (for GKE access)
