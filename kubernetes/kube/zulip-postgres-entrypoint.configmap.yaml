@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zulip-postgres-entrypoint
+  namespace: chat
+  labels:
+    app: chat
+data:
+  setup.sql:
+    |
+      ALTER ROLE zulip SET search_path TO zulip,public;
+      CREATE SCHEMA zulip AUTHORIZATION zulip;
+      CREATE EXTENSION pgroonga;
+      GRANT USAGE ON SCHEMA pgroonga TO zulip;   

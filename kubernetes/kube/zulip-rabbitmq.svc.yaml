@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zulip-rabbitmq
+  namespace: chat
+  labels:
+    app: chat
+spec:
+  selector:
+    app: chat
+    component: rabbitmq
+  ports:
+  - name: rabbitmq
+    port: 5672
+    targetPort: 5672
+    protocol: TCP

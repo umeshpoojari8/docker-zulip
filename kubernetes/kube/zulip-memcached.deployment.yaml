@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zulip-memcached
+  namespace: chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat
+      component: memcached
+  template:
+    metadata:
+      labels:
+        app: chat
+        component: memcached
+    spec:
+      containers:
+      - name: memcached
+        image: quay.io/sameersbn/memcached:latest
+        resources:
+          limits:
+            cpu: 75m
+            memory: 768Mi
+        ports:
+        - name: memcached
+          containerPort: 11211
+          protocol: TCP
