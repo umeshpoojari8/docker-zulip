@@ -7,7 +7,7 @@ metadata:
     app: chat
     component: app
 spec:
-  storageClassName: openebs-jiva-non-ha
+  storageClassName: standard
   accessModes:
   - ReadWriteOnce
   resources:
