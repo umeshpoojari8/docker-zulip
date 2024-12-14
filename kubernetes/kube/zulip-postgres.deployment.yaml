@@ -1,63 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zulip-postgres
-  namespace: default
+  name: postgresql-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: chat
-      component: postgres
+      app: postgresql
   template:
     metadata:
       labels:
-        app: chat
-        component: postgres
+        app: postgresql
     spec:
       containers:
-      - name: postgresql
-        # zulip/zulip-postgres:latest (or :10) does *not* work,
-        # the startup sript script tries to run `su` but that doesn't work.
-        # output is something like the following:
-        # | .... other script output ....
-        # | ++ su postgres -c psql
-        # | su: must be run from a terminal
-        #
-        # Swapped to using pgroonga's image here + custom setup scripts via mounted configmaps
-        image: zulip/zulip-postgresql
-        command: ["/bin/bash"]
-        args:
-          - /pg-command/start.sh
-        resources:
-          limits:
-            cpu: 1
-            memory: 4Gi
-        env:
-        - name: POSTGRES_DB
-          value: zulip
-        - name: POSTGRES_USER
-          value: zulip
-        - name: POSTGRES_PASSWORD
-          value: "password"
-        volumeMounts:
-          - name: data
-            mountPath: /var/lib/postgresql
-          - name: pg-entrypoint
-            mountPath: /docker-entrypoint-initdb.d
-          - name: pg-command
-            mountPath: /pg-command
-        ports:
-        - containerPort: 5432
-          name: postgres
-          protocol: TCP
+        - name: postgresql
+          image: zulip/zulip-postgresql
+          env:
+            - name: POSTGRES_DB
+              value: zulip
+            - name: POSTGRES_USER
+              value: zulip
+            - name: POSTGRES_PASSWORD
+              value: password
+          volumeMounts:
+            - name: zulip-postgres-data
+              mountPath: /var/lib/postgresql
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: zulip-postgres-data
-      - name: pg-entrypoint
-        configMap:
-          name: zulip-postgres-entrypoint
-      - name: pg-command
-        configMap:
-          name: zulip-postgres-command
+        - name: zulip-postgres-data
+          persistentVolumeClaim:
+            claimName: postgresql-pvc
