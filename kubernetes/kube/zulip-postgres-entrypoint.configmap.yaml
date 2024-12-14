@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: zulip-postgres-entrypoint
-  namespace: chat
+  namespace: default
   labels:
     app: chat
 data:
