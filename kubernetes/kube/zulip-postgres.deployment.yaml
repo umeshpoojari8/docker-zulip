@@ -28,4 +28,4 @@ spec:
       volumes:
         - name: zulip-postgres-data
           persistentVolumeClaim:
-            claimName: postgresql-pvc
+            claimName: zulip-postgres-data
