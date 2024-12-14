@@ -25,7 +25,7 @@ spec:
         # | su: must be run from a terminal
         #
         # Swapped to using pgroonga's image here + custom setup scripts via mounted configmaps
-        image: groonga/pgroonga:latest-alpine-11
+        image: zulip/zulip-postgresql
         command: ["/bin/bash"]
         args:
           - /pg-command/start.sh
