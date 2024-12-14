@@ -29,7 +29,7 @@ steps:
       - 'nodes'
 
 substitutions:
-  _GKE_CLUSTER: 'dev'
+  _GKE_CLUSTER: 'ggai'
   _GKE_ZONE: 'us-central1'
 
 logsBucket: gs://ggai-zulip
