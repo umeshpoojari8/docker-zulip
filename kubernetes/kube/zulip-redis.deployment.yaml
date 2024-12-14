@@ -20,7 +20,7 @@ spec:
         image: quay.io/sameersbn/redis:latest
         resources:
           limits:
-            cpu: 1
+            cpu: 50m
         ports:
         - name: redis
           containerPort: 6379
