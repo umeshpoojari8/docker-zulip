@@ -29,10 +29,10 @@ steps:
       - 'nodes'
 
 substitutions:
-  _GKE_CLUSTER: 'ggai-dev'
+  _GKE_CLUSTER: 'zulip-dev'
   _GKE_ZONE: 'us-central1'
 
-logsBucket: gs://ggai-dev
+logsBucket: gs://dev-zulip-cloudbuild-log
 
 # Ensure the Cloud Build service account has appropriate roles:
 # - roles/container.developer (for GKE access)
