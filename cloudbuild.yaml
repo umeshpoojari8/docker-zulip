@@ -15,7 +15,7 @@ steps:
       - 'CLOUDSDK_COMPUTE_ZONE=${_GKE_ZONE}'
       - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
     args:
-      - 'apply'
+      - 'create'
       - '-f'
       - 'kubernetes/manual'
 
