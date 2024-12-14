@@ -81,7 +81,7 @@ spec:
         - name: SECRETS_secret_key
           value: '${ZULIP_SECRET_KEY}'
         - name: SECRETS_postgres_password
-          value: '${ZULIP_POSTGRES_PASSWORD}'
+          value: 'password'
         - name: SECRETS_rabbitmq_password
           value: '${ZULIP_RABBITMQ_PASSWORD}'
 
