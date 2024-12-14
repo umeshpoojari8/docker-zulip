@@ -14,58 +14,6 @@ spec:
         app: zulip
     spec:
       containers:
-        - name: redis
-          image: redis:alpine
-          command:
-            - "sh"
-            - "-euc"
-            - |
-              echo "requirepass '$$REDIS_PASSWORD'" > /etc/redis.conf
-              exec redis-server /etc/redis.conf
-          env:
-            - name: REDIS_PASSWORD
-              value: "post@pass123"
-          resources:
-            limits:
-              cpu: 50m
-          volumeMounts:
-            - name: zulip-persistent-storage
-              mountPath: /var/lib/redis
-        - name: memcached
-          image: memcached:alpine
-          command:
-            - "sh"
-            - "-euc"
-            - |
-              echo 'mech_list: plain' > "$$SASL_CONF_PATH"
-              echo "zulip@$$HOSTNAME:$$MEMCACHED_PASSWORD" > "$$MEMCACHED_SASL_PWDB"
-              echo "zulip@localhost:$$MEMCACHED_PASSWORD" >> "$$MEMCACHED_SASL_PWDB"
-              exec memcached -S
-          env:
-            - name: SASL_CONF_PATH
-              value: "/home/memcache/memcached.conf"
-            - name: MEMCACHED_SASL_PWDB
-              value: "/home/memcache/memcached-sasl-db"
-            - name: MEMCACHED_PASSWORD
-              value: "post@pass123"
-          resources:
-            limits:
-              cpu: 75m
-              memory: 768Mi
-        - name: rabbitmq
-          image: rabbitmq:3.12.14
-          resources:
-            limits:
-              cpu: 75m
-              memory: 768Mi
-          env:
-            - name: RABBITMQ_DEFAULT_USER
-              value: "zulip"
-            - name: RABBITMQ_DEFAULT_PASS
-              value: "post@pass123"
-          volumeMounts:
-            - name: zulip-persistent-storage
-              mountPath: /var/lib/rabbitmq
         - name: zulip
           image: zulip/docker-zulip:9.3-0
           env:
