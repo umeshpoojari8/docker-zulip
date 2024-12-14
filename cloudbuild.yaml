@@ -32,7 +32,7 @@ substitutions:
   _GKE_CLUSTER: 'ggai'
   _GKE_ZONE: 'us-central1'
 
-logsBucket: gs://ggai-zulip
+logsBucket: gs://logggai
 
 # Ensure the Cloud Build service account has appropriate roles:
 # - roles/container.developer (for GKE access)
