@@ -67,7 +67,7 @@ spec:
             - name: zulip-persistent-storage
               mountPath: /var/lib/rabbitmq
         - name: zulip
-          image: gcr.io/zulip-gogatewayai/ggai-zulip:latest
+          image: zulip/docker-zulip:9.3-0
           env:
             - name: DB_HOST
               value: "postgresql-service"
