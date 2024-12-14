@@ -1,23 +1,23 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: zulip
-  namespace: chat
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
-    ingress.kubernetes.io/limit-rps: "20"
-    ingress.kubernetes.io/proxy-body-size: "25m"
-    kubernetes.io/tls-acme: "true"
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  tls:
-  - hosts:
-      - chat.domain.tld
-    secretName: chat-tls
-  rules:
-  - host: chat.domain.tld
-    http:
-      paths:
-      - backend:
-          serviceName: zulip
-          servicePort: 80
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: zulip
+#   namespace: chat
+#   annotations:
+#     ingress.kubernetes.io/ssl-redirect: "true"
+#     ingress.kubernetes.io/limit-rps: "20"
+#     ingress.kubernetes.io/proxy-body-size: "25m"
+#     kubernetes.io/tls-acme: "true"
+#     kubernetes.io/ingress.class: "traefik"
+# spec:
+#   tls:
+#   - hosts:
+#       - chat.domain.tld
+#     secretName: chat-tls
+#   rules:
+#   - host: chat.domain.tld
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: zulip
+#           servicePort: 80
