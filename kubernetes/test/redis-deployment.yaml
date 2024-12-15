@@ -25,6 +25,9 @@ spec:
           env:
             - name: REDIS_PASSWORD
               value: "REPLACE_WITH_SECURE_REDIS_PASSWORD"
+          resources:
+            limits:
+              cpu: 50m
           volumeMounts:
             - name: redis-persistent-storage
               mountPath: /var/lib/redis
