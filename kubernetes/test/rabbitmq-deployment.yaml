@@ -21,6 +21,10 @@ spec:
               value: "zulip"
             - name: RABBITMQ_DEFAULT_PASS
               value: "rab@pass123"
+          resources:
+            limits:
+              cpu: 75m
+              memory: 768Mi
           volumeMounts:
             - name: rabbitmq-persistent-storage
               mountPath: /var/lib/rabbitmq
