@@ -23,6 +23,10 @@ spec:
               value: zulip
             - name: POSTGRES_PASSWORD
               value: post@pass123
+          resources:
+            limits:
+              cpu: 80m
+              memory: 768Mi
           volumeMounts:
             - name: postgresql-persistent-storage
               mountPath: /var/lib/postgresql
