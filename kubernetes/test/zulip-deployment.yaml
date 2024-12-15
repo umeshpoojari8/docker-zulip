@@ -16,6 +16,10 @@ spec:
       containers:
         - name: zulip
           image: zulip/docker-zulip:9.3-0
+          resources:
+            limits:
+              cpu: 100m
+              memory: 3584Mi
           env:
             - name: DB_HOST
               value: "postgresql-service"
