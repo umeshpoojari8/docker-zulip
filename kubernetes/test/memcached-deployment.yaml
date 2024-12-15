@@ -31,6 +31,10 @@ spec:
               value: "/home/memcache/memcached-sasl-db"
             - name: MEMCACHED_PASSWORD
               value: "mem@pass123"
+          resources:
+            limits:
+              cpu: 75m
+              memory: 768Mi
       volumes:
         - name: memcached-persistent-storage
           persistentVolumeClaim:
