@@ -8,6 +8,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  storageClassName: standard
 
 ---
 apiVersion: v1
@@ -20,6 +21,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  storageClassName: standard
 
 ---
 apiVersion: v1
@@ -32,6 +34,7 @@ spec:
   resources:
     requests:
       storage: 2Gi
+  storageClassName: standard
 
 ---
 apiVersion: v1
@@ -44,3 +47,4 @@ spec:
   resources:
     requests:
       storage: 5Gi
+  storageClassName: standard
