@@ -63,7 +63,7 @@ substitutions:
   _GKE_ZONE: 'us-central1'
   _IMAGE_NAME: 'dev-zulip'
 
-logsBucket: gs://dev-zulip-cloudbuild-log
+logsBucket: gs://bucket-build-logs
 # timeout: '1200s'
 # Ensure the Cloud Build service account has appropriate roles:
 # - roles/container.developer (for GKE access)
