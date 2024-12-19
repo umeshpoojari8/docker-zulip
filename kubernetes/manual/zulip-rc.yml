@@ -40,9 +40,9 @@ spec:
             - "sh"
             - "-euc"
             - |
-              echo 'mech_list: plain' > "$$SASL_CONF_PATH"
-              echo "zulip@$$HOSTNAME:$$MEMCACHED_PASSWORD" > "$$MEMCACHED_SASL_PWDB"
-              echo "zulip@localhost:$$MEMCACHED_PASSWORD" >> "$$MEMCACHED_SASL_PWDB"
+              echo 'mech_list: plain' > "$SASL_CONF_PATH"
+              echo "zulip@$HOSTNAME:$MEMCACHED_PASSWORD" > "$MEMCACHED_SASL_PWDB"
+              echo "zulip@localhost:$MEMCACHED_PASSWORD" >> "$MEMCACHED_SASL_PWDB"
               exec memcached -S
           env:
             - name: SASL_CONF_PATH
@@ -121,7 +121,7 @@ spec:
             - name: ZULIP_USER_PASS
               value: "123456789"
             - name: SECRETS_secret_key
-              value: "REPLCAE_WITH_SECURE_SECRET_KEY"
+              value: "REPLACE_WITH_SECURE_SECRET_KEY"
             ## These should match the passwords configured above
             - name: SECRETS_postgres_password
               value: "password"
@@ -146,23 +146,16 @@ spec:
           volumeMounts:
             - name: zulip-persistent-storage
               mountPath: /data
-      #        livenessProbe:
-      #          httpGet:
-      #            path: /login
-      #            port: 443
-      #            scheme: HTTP
-      #          initialDelaySeconds: 120
-      #          timeoutSeconds: 12
       volumes:
         - name: redis-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/redis
+          persistentVolumeClaim:
+            claimName: redis-pvc
         - name: rabbitmq-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/rabbitmq
+          persistentVolumeClaim:
+            claimName: rabbitmq-pvc
         - name: postgresql-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/postgresql
+          persistentVolumeClaim:
+            claimName: postgresql-pvc
         - name: zulip-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/zulip
+          persistentVolumeClaim:
+            claimName: zulip-pvc
