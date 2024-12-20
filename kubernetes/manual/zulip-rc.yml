@@ -27,7 +27,7 @@ spec:
               exec redis-server /etc/redis.conf
           env:
             - name: REDIS_PASSWORD
-              value: "REPLACE_WITH_SECURE_REDIS_PASSWORD"
+              value: "PASSWORD"
           resources:
             limits:
               cpu: 50m
@@ -50,7 +50,7 @@ spec:
             - name: MEMCACHED_SASL_PWDB
               value: "/home/memcache/memcached-sasl-db"
             - name: MEMCACHED_PASSWORD
-              value: "REPLACE_WITH_SECURE_MEMCACHED_PASSWORD"
+              value: "PASSWORD"
           resources:
             limits:
               cpu: 75m
@@ -65,7 +65,7 @@ spec:
             - name: RABBITMQ_DEFAULT_USER
               value: "zulip"
             - name: RABBITMQ_DEFAULT_PASS
-              value: "REPLACE_WITH_SECURE_RABBITMQ_PASSWORD"
+              value: "PASSWORD"
           volumeMounts:
             - name: rabbitmq-persistent-storage
               mountPath: /var/lib/rabbitmq
@@ -81,7 +81,7 @@ spec:
             - name: POSTGRES_USER
               value: zulip
             - name: POSTGRES_PASSWORD
-              value: REPLACE_WITH_SECURE_POSTGRES_PASSWORD
+              value: PASSWORD
           volumeMounts:
             - name: postgresql-persistent-storage
               mountPath: /var/lib/postgresql
@@ -123,13 +123,13 @@ spec:
             - name: SECRETS_secret_key
               value: "REPLCAE_WITH_SECURE_SECRET_KEY"
             ## These should match the passwords configured above
-            - name: SECRETS_postgres_password
+            - name: PASSWORD
               value: "REPLACE_WITH_SECURE_POSTGRES_PASSWORD"
-            - name: SECRETS_memcached_password
+            - name: PASSWORD
               value: "REPLACE_WITH_SECURE_MEMCACHED_PASSWORD"
-            - name: SECRETS_rabbitmq_password
+            - name: PASSWORD
               value: "REPLACE_WITH_SECURE_RABBITMQ_PASSWORD"
-            - name: SECRETS_redis_password
+            - name: PASSWORD
               value: "REPLACE_WITH_SECURE_REDIS_PASSWORD"
             - name: SSL_CERTIFICATE_GENERATION
               value: "self-signed"
