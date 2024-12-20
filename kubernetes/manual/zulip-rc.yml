@@ -146,23 +146,16 @@ spec:
           volumeMounts:
             - name: zulip-persistent-storage
               mountPath: /data
-      #        livenessProbe:
-      #          httpGet:
-      #            path: /login
-      #            port: 443
-      #            scheme: HTTP
-      #          initialDelaySeconds: 120
-      #          timeoutSeconds: 12
       volumes:
         - name: redis-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/redis
+          persistentVolumeClaim:
+            claimName: redis-pvc
         - name: rabbitmq-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/rabbitmq
+          persistentVolumeClaim:
+            claimName: rabbitmq-pvc
         - name: postgresql-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/postgresql
+          persistentVolumeClaim:
+            claimName: postgresql-pvc
         - name: zulip-persistent-storage
-          hostPath:
-            path: /opt/docker/zulip/zulip
+          persistentVolumeClaim:
+            claimName: zulip-pvc
