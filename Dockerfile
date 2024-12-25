@@ -16,6 +16,14 @@ RUN { [ ! "$UBUNTU_MIRROR" ] || sed -i "s|http://\(\w*\.\)*archive\.ubuntu\.com/
     apt-get -q install --no-install-recommends -y ca-certificates git locales python3 sudo tzdata && \
     touch /var/mail/ubuntu && chown ubuntu /var/mail/ubuntu && userdel -r ubuntu && \
     useradd -d /home/zulip -m zulip -u 1000
+    
+# Create self-signed SSL certificates
+RUN mkdir -p /etc/ssl/private /etc/ssl/certs && \
+    openssl genrsa -out /etc/ssl/private/zulip.key 2048 && \
+    openssl req -new -x509 -key /etc/ssl/private/zulip.key -out /etc/ssl/certs/zulip.combined-chain.crt -days 365 \
+        -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=ggateway.ai" && \
+    chmod 600 /etc/ssl/private/zulip.key && \
+    chmod 644 /etc/ssl/certs/zulip.combined-chain.crt
 
 FROM base AS build
 
@@ -26,8 +34,8 @@ WORKDIR /home/zulip
 
 # You can specify these in docker-compose.yml or with
 #   docker build --build-arg "ZULIP_GIT_REF=git_branch_name" .
-ARG ZULIP_GIT_URL=https://github.com/zulip/zulip.git
-ARG ZULIP_GIT_REF=9.3
+ARG ZULIP_GIT_URL=https://github.com/umeshpoojari8/zulip.git
+ARG ZULIP_GIT_REF=z2
 
 RUN git clone "$ZULIP_GIT_URL" && \
     cd zulip && \
