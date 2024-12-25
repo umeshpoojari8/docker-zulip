@@ -61,8 +61,8 @@ steps:
 #   - 'us-central1-docker.pkg.dev/zulip-dev-444717/dev-zulip/dev'
 
 substitutions:
-  _GKE_CLUSTER: 'dev'
-  _GKE_ZONE: 'us-central1'
+  _GKE_CLUSTER: 'test'
+  _GKE_ZONE: 'southamerica-west1'
   _IMAGE_NAME: 'dev-zulip'
 
 logsBucket: gs://dev-zulip-cloudbuild-log
