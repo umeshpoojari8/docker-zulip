@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
       - name: postgresql
-        image: postgres:14
+        image: zulip/zulip-postgresql
         env:
         - name: POSTGRES_USER
           value: zulip
@@ -102,7 +102,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:7
+        image: redis:alpine
         env:
         - name: REDIS_PASSWORD
           value: securepassword
@@ -138,7 +138,7 @@ spec:
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq:3.9
+        image: rabbitmq:3.12.14
         env:
         - name: RABBITMQ_DEFAULT_USER
           value: zulip
@@ -176,7 +176,7 @@ spec:
     spec:
       containers:
       - name: memcached
-        image: memcached:1.6
+        image: memcached:alpine
         args:
         - "-m"
         - "64"
