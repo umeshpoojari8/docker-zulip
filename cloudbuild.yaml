@@ -45,7 +45,7 @@ steps:
     args:
       - 'apply'
       - '-f'
-      - 'kubernetes/manual'
+      - 'kubernetes/v2'
       # - '--validate=false'
 
   # Step 6: Verify nodes in the GKE cluster
