@@ -17,6 +17,15 @@ RUN { [ ! "$UBUNTU_MIRROR" ] || sed -i "s|http://\(\w*\.\)*archive\.ubuntu\.com/
     touch /var/mail/ubuntu && chown ubuntu /var/mail/ubuntu && userdel -r ubuntu && \
     useradd -d /home/zulip -m zulip -u 1000
 
+# Create self-signed SSL certificates
+RUN mkdir -p /etc/ssl/private /etc/ssl/certs && \
+    openssl genrsa -out /etc/ssl/private/zulip.key 2048 && \
+    openssl req -new -x509 -key /etc/ssl/private/zulip.key -out /etc/ssl/certs/zulip.combined-chain.crt -days 365 \
+        -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=ggateway.ai" && \
+    chmod 600 /etc/ssl/private/zulip.key && \
+    chmod 644 /etc/ssl/certs/zulip.combined-chain.crt
+
+
 FROM base AS build
 
 RUN echo 'zulip ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers
