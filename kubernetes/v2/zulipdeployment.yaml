@@ -75,13 +75,8 @@ spec:
           value: securepassword
         - name: POSTGRES_DB
           value: zulip
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "500m"
-          limits:
-            memory: "1Gi"
-            cpu: "1"
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata  # Avoid conflicts
         volumeMounts:
         - name: postgresql-data
           mountPath: /var/lib/postgresql/data
